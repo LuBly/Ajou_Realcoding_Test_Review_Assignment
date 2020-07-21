@@ -176,7 +176,18 @@ public class MockServiceTest {
     }
 
     // 4. 2개 이상의 가짜 챔피언 객체를 List로 만들어 리턴하고, 하나씩 해당 객체를 검색한 뒤 검색을 위해 호출한 횟수를 검증하세요.
+    @Test
+    public void testInvocationCountWhenGetChampionList(){
+        List<Champion> champions = new ArrayList<>();
+        champions.add(new Champion("루시안","바텀",5));
+        champions.add(new Champion("아리","미드",10));
+        champions.add(new Champion("애쉬","바텀",7));
 
+        when(mockService.findAllChampions()).thenReturn(champions);
+        assertThat(mockService.findAllChampions().get(0).getName(),is("루시안"));
+        assertThat(mockService.findAllChampions().size(),is(3));
+        verify(mockRepository,times(2)).findAll();
+    }
 
     //가장 많이 사용되는 테스트 중 하나로 BDD 방식에 기반한 테스트 방법 예제
     @Test
