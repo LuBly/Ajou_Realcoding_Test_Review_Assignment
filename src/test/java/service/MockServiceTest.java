@@ -110,7 +110,14 @@ public class MockServiceTest {
     }
 
     // 4-3. champion 객체에서 이름을 저장하는 로직이 실행되지 않았으면 Pass 하는 로직을 작성하세요.
-
+    @Test
+    public void shouldNeverInvocationWhenSetChampionName(){
+        Champion champion =mock(Champion.class);
+        champion.setName("아리");
+        champion.setPosition("미드");
+        champion.setHasSkinCount(10);
+        verify(champion,never()).setName(any(String.class));
+    }
     // 4-4. champion 객체에서 이름을 가져오는 로직이 200ms 시간 이내에 1번 실행되었는 지 검증하는 로직을 작성하세요.
 
 
