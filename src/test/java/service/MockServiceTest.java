@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import repository.MockRepository;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
@@ -67,7 +69,18 @@ public class MockServiceTest {
     }
 
     // 4. champion 객체의 크기를 검증하는 로직이 1번 실행되었는지 테스트 하세요.
+    @Test
+    public void confirmArraySizeCheck(){
+        List<Champion> mockChampions = mock(List.class);
+        Champion champion =mock(Champion.class);
+        champion.setName("직스");
+        champion.setPosition("미드");
+        champion.setHasSkinCount(2);
+        mockChampions.add(champion);
 
+        System.out.println("Size ::"+mockChampions.size());
+        verify(mockChampions,times(1)).size();
+    }
 
     // 4-1. champion 객체에서 이름을 가져오는 로직이 2번 이상 실행되면 Pass 하는 로직을 작성하세요.
 
