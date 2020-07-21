@@ -168,6 +168,12 @@ public class MockServiceTest {
     }
     // 3. 챔피언을 검색하면 가짜 챔피언 객체를 리턴하고, mockRepository의 해당 메소드가 1번 호출되었는지를 검증하고, 그 객체의 스킨 개수가
     //    맞는지 확인하는 테스트코드를 작성하세요.
+    @Test
+    public void testSkinCountAndInvocationOneTimeWhenFindChampion(){
+        when(mockService.findByName(anyString())).thenReturn(new Champion("오공","정글",3));
+        assertThat(mockService.findByName("르블랑").getHasSkinCount(),is(3));
+        verify(mockRepository,times(1)).findByName(anyString());
+    }
 
     // 4. 2개 이상의 가짜 챔피언 객체를 List로 만들어 리턴하고, 하나씩 해당 객체를 검색한 뒤 검색을 위해 호출한 횟수를 검증하세요.
 
