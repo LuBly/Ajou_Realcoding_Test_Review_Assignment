@@ -191,7 +191,7 @@ public class MockServiceTest {
 
     //가장 많이 사용되는 테스트 중 하나로 BDD 방식에 기반한 테스트 방법 예제
     @Test
-    public void 탐켄치를_호출하면_탐켄치정보를_리턴하고_1번이하로_호출되었는지_검증() {
+    public void 탐켄치를_호출하면_탐켄치정보를_리턴하고_1번이하로_호출되었는지_검증_test() {
         //given
         given(mockRepository.findByName("탐켄치")).willReturn(new Champion("탐켄치", "서폿", 4));
         //when
