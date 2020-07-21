@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import repository.MockRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -153,7 +154,18 @@ public class MockServiceTest {
     }
 
     // 2. 2개 이상의 챔피언을 List로 만들어 전체 챔피언을 가져오는 메소드 호출시 그 갯수가 맞는지 확인하는 테스트 코드를 작성하세요.
+    @Test
+    public void 챔피언정보들을Mocking하고Service메소드호출테스트_ver3() {
+        List<Champion> champions = new ArrayList<>();
+        champions.add(new Champion("루시안","바텀",5));
+        champions.add(new Champion("아리","미드",10));
+        champions.add(new Champion("애쉬","바텀",7));
 
+        when(mockService.findAllChampions()).thenReturn(champions);
+
+        assertThat(mockService.findAllChampions().size(), is(3));
+        verify(mockRepository,times(1)).findAll();
+    }
     // 3. 챔피언을 검색하면 가짜 챔피언 객체를 리턴하고, mockRepository의 해당 메소드가 1번 호출되었는지를 검증하고, 그 객체의 스킨 개수가
     //    맞는지 확인하는 테스트코드를 작성하세요.
 
