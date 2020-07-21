@@ -56,7 +56,15 @@ public class MockServiceTest {
     }
 
     // 3. verify 를 사용하여 '미드' 포지션을 저장하는 프로세스가 진행되었는지 테스트 하세요.
-
+    @Test
+    public void shouldSetMidPositionUseVerify(){
+        Champion champion = mock(Champion.class);
+        champion.setName("직스");
+        champion.setPosition("미드");
+        champion.setHasSkinCount(7);
+        
+        verify(champion,times(1)).setPosition("미드");
+    }
 
     // 4. champion 객체의 크기를 검증하는 로직이 1번 실행되었는지 테스트 하세요.
 
